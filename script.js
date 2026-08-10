@@ -12,7 +12,13 @@ const previewArtworkImage = document.querySelector('#preview-artwork-image');
 const previewPlaceholder = document.querySelector('#preview-placeholder');
 const uploadStatus = document.querySelector('#upload-status');
 const previewFrame = document.querySelector('#preview-frame');
+const previewStage = document.querySelector('#preview-stage');
 const selectedFrameName = document.querySelector('#selected-frame-name');
+const artworkWidthInput = document.querySelector('#artwork-width');
+const artworkHeightInput = document.querySelector('#artwork-height');
+const previewWidthMeasure = document.querySelector('#preview-width-measure');
+const previewHeightMeasure = document.querySelector('#preview-height-measure');
+const previewSizeSummary = document.querySelector('#preview-size-summary');
 const frameCodeField = document.querySelector('#frame-code');
 const frameSpecField = document.querySelector('#frame-spec');
 const uploadedFileNameField = document.querySelector('#uploaded-file-name');
@@ -63,10 +69,77 @@ function selectFrame(button) {
   if (selectedFrameName) selectedFrameName.textContent = code;
   if (frameCodeField) frameCodeField.value = code;
   if (frameSpecField) frameSpecField.value = `W${width} × H${height} mm`;
+  updatePreviewDimensions();
 }
 
 document.querySelectorAll('.frame-option').forEach((button) => {
   button.addEventListener('click', () => selectFrame(button));
+});
+
+function clampArtworkDimension(input, fallback) {
+  const value = Number(input?.value);
+  if (!Number.isFinite(value)) return fallback;
+  return Math.min(200, Math.max(5, value));
+}
+
+function formatCentimeters(value) {
+  return Number.isInteger(value) ? String(value) : value.toFixed(1);
+}
+
+function updatePreviewDimensions() {
+  if (!previewFrame || !previewStage) return;
+
+  const selected = document.querySelector('.frame-option.is-selected');
+  if (!selected) return;
+
+  const artworkWidth = clampArtworkDimension(artworkWidthInput, 40);
+  const artworkHeight = clampArtworkDimension(artworkHeightInput, 30);
+  const frameFaceWidth = Number(selected.dataset.width) / 10;
+  const outerWidth = artworkWidth + frameFaceWidth * 2;
+  const outerHeight = artworkHeight + frameFaceWidth * 2;
+  const stageRect = previewStage.getBoundingClientRect();
+  const maxWidth = Math.max(160, stageRect.width - 76);
+  const maxHeight = Math.max(170, stageRect.height - 50);
+  const scale = Math.min(maxWidth / outerWidth, maxHeight / outerHeight);
+  const borderWidth = Math.max(9, Math.round(frameFaceWidth * scale));
+
+  previewFrame.style.width = `${Math.round(outerWidth * scale)}px`;
+  previewFrame.style.height = `${Math.round(outerHeight * scale)}px`;
+  previewFrame.style.setProperty('--frame-size', `${borderWidth}px`);
+
+  const widthText = `成品寬約 ${formatCentimeters(outerWidth)} cm`;
+  const heightText = `成品高約 ${formatCentimeters(outerHeight)} cm`;
+  if (previewWidthMeasure) previewWidthMeasure.textContent = widthText;
+  if (previewHeightMeasure) previewHeightMeasure.textContent = heightText;
+  if (previewSizeSummary) {
+    previewSizeSummary.textContent = `作品 ${formatCentimeters(artworkWidth)} × ${formatCentimeters(artworkHeight)} cm · 成品約 ${formatCentimeters(outerWidth)} × ${formatCentimeters(outerHeight)} cm`;
+  }
+}
+
+[artworkWidthInput, artworkHeightInput].forEach((input) => {
+  input?.addEventListener('input', updatePreviewDimensions);
+  input?.addEventListener('change', updatePreviewDimensions);
+});
+
+document.querySelectorAll('.frame-filter-button').forEach((filterButton) => {
+  filterButton.addEventListener('click', () => {
+    const { frameFilter } = filterButton.dataset;
+    document.querySelectorAll('.frame-filter-button').forEach((button) => {
+      const isActive = button === filterButton;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-selected', String(isActive));
+    });
+
+    const options = [...document.querySelectorAll('.frame-option')];
+    options.forEach((option) => {
+      option.hidden = option.dataset.category !== frameFilter;
+    });
+
+    const selected = document.querySelector('.frame-option.is-selected');
+    if (selected?.hidden) {
+      selectFrame(options.find((option) => option.dataset.category === frameFilter));
+    }
+  });
 });
 
 artworkUpload?.addEventListener('change', () => {
@@ -105,8 +178,12 @@ newOrderButton?.addEventListener('click', () => {
   form.reset();
   if (referenceField) referenceField.value = '';
   if (referenceNote) referenceNote.hidden = true;
+  document.querySelector('.frame-filter-button[data-frame-filter="plain"]')?.click();
   selectFrame(document.querySelector('.frame-option[data-frame="101-small-red"]'));
   success.hidden = true;
   form.hidden = false;
   form.querySelector('input[name="name"]').focus();
 });
+
+window.addEventListener('resize', updatePreviewDimensions);
+requestAnimationFrame(updatePreviewDimensions);
