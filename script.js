@@ -105,7 +105,7 @@ newOrderButton?.addEventListener('click', () => {
   form.reset();
   if (referenceField) referenceField.value = '';
   if (referenceNote) referenceNote.hidden = true;
-  selectFrame(document.querySelector('.frame-option[data-frame="101-red"]'));
+  selectFrame(document.querySelector('.frame-option[data-frame="101-small-red"]'));
   success.hidden = true;
   form.hidden = false;
   form.querySelector('input[name="name"]').focus();
