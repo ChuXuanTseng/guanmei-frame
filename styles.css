@@ -229,3 +229,7 @@ h2 { font-size: clamp(30px, 3.25vw, 47px); line-height: 1.45; }
 .line-float b { grid-column: 2; grid-row: 2; align-self: start; color: #5c846b; font: 500 10px var(--sans); letter-spacing: 0; }
 .line-float b::after { content: "　·　點擊立即加入"; color: #06a947; font-size: 10px; font-weight: 400; white-space: nowrap; }
 @media (max-width: 500px) { .line-float { grid-template-columns: 62px; grid-template-rows: 62px; }.line-float::before { grid-column: 1; grid-row: 1; }.line-float b { display: none; } }
+
+
+/* QR Code 卡片維持 QR 與帳號兩行資訊，避免文字換行撐高卡片。 */
+.line-float b::after { content: none; }
