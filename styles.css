@@ -209,3 +209,13 @@ h2 { font-size: clamp(30px, 3.25vw, 47px); line-height: 1.45; }
 .preview-frame[data-frame="101-small-red"] { --frame-fill: repeating-linear-gradient(104deg, rgba(255,255,255,.09) 0 1px, transparent 1px 5px), linear-gradient(125deg, #c14435, #751912 42%, #b5392c 70%, #61140e); }
 .preview-frame[data-frame="101-middle-red"] { --frame-fill: repeating-linear-gradient(104deg, rgba(255,255,255,.09) 0 1px, transparent 1px 5px), linear-gradient(125deg, #b2382b, #67130f 42%, #9f2e23 70%, #58100d); }
 .preview-frame[data-frame="101-large-brown"] { --frame-fill: repeating-linear-gradient(105deg, rgba(255,255,255,.1) 0 1px, transparent 1px 6px), linear-gradient(125deg, #5e4039, #181211 44%, #4b302c 72%, #171010); }
+
+
+/* 恢復官方 LINE QR Code；整張卡片可直接加入好友。 */
+.line-float { position: fixed; z-index: 70; right: 20px; bottom: 20px; display: grid; grid-template-columns: 68px minmax(68px, 1fr); gap: 8px; align-items: center; min-width: 164px; padding: 7px; color: #126e37; background: #fff; border: 2px solid #06c755; border-radius: 14px; box-shadow: 0 10px 22px rgba(12, 103, 54, .23), 0 3px 7px rgba(0,0,0,.13); font-family: var(--sans); line-height: 1.25; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.line-float::before { content: ""; display: block; width: 68px; height: 68px; padding: 2px; background: #fff url("assets/line-qr.png") center / contain no-repeat; }
+.line-float:hover, .line-float:focus-visible { color: #0a5a2d; border-color: #05ad49; transform: translateY(-3px); box-shadow: 0 16px 30px rgba(12, 103, 54, .31), 0 4px 8px rgba(0,0,0,.14); outline: none; }
+.line-float span { display: grid; gap: 3px; min-width: 0; font-size: inherit; font-weight: inherit; letter-spacing: normal; }
+.line-float b { padding-left: 0; border-left: 0; font: 600 14px var(--serif); letter-spacing: .05em; }
+.line-float span::after { content: "點擊立即加入"; color: #06a947; font-size: 10px; white-space: nowrap; }
+@media (max-width: 500px) { .line-float { right: 12px; bottom: 14px; grid-template-columns: 62px; min-width: 0; padding: 5px; border-radius: 12px; }.line-float::before { width: 62px; height: 62px; }.line-float span { display: none; } }
