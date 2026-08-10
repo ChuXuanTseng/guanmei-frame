@@ -101,12 +101,12 @@
                 <small>支援 JPG、PNG、WEBP</small>
               </label>
               <p class="upload-status" id="upload-status">圖片只會在目前裝置上預覽，不會上傳到網站。</p>
-              <div class="catalog-hint"><span>已載入框型資料</span><p>101 中 · W35 / H15<br />102 · W45 / H15</p></div>
+              <div class="catalog-hint"><span>已載入 4 款框型資料</span><p>101 小 · W21 / H14<br />101 中 · W35 / H15<br />101 大、102 · W45 / H15</p></div>
             </div>
             <div class="live-preview-panel">
-              <div class="preview-label"><span>即時預覽</span><b id="selected-frame-name">101 中・紅</b></div>
+              <div class="preview-label"><span>即時預覽</span><b id="selected-frame-name">101 小・紅</b></div>
               <div class="preview-stage">
-                <div class="preview-frame" id="preview-frame" data-frame="101-red">
+                <div class="preview-frame" id="preview-frame" data-frame="101-small-red">
                   <div class="preview-artwork">
                     <img id="preview-artwork-image" alt="客戶上傳作品的相框預覽" hidden />
                     <div class="preview-placeholder" id="preview-placeholder"><span>✦</span><b>你的作品會顯示在這裡</b><small>先上傳一張照片或作品圖</small></div>
@@ -119,13 +119,18 @@
           <div class="frame-picker" aria-label="選擇框型">
             <div class="picker-label"><span>選擇框型</span><p>點選即可更新預覽</p></div>
             <div class="frame-options">
-              <button class="frame-option is-selected" type="button" data-frame="101-red" data-code="101 中・紅" data-width="35" data-height="15" aria-pressed="true"><span class="frame-swatch swatch-101-red"></span><span class="frame-option-info"><b>101 中・紅</b><small>框面寬 W35 · 厚度 H15 mm</small></span></button>
-              <button class="frame-option" type="button" data-frame="101-brown" data-code="101 中・咖" data-width="35" data-height="15" aria-pressed="false"><span class="frame-swatch swatch-101-brown"></span><span class="frame-option-info"><b>101 中・咖</b><small>框面寬 W35 · 厚度 H15 mm</small></span></button>
-              <button class="frame-option" type="button" data-frame="101-teak" data-code="101 中・柚" data-width="35" data-height="15" aria-pressed="false"><span class="frame-swatch swatch-101-teak"></span><span class="frame-option-info"><b>101 中・柚</b><small>框面寬 W35 · 厚度 H15 mm</small></span></button>
+              <button class="frame-option is-selected" type="button" data-frame="101-small-red" data-code="101 小・紅" data-width="21" data-height="14" aria-pressed="true"><span class="frame-swatch swatch-101-small-red"></span><span class="frame-option-info"><b>101 小・紅</b><small>框面寬 W21 · 厚度 H14 mm</small></span></button>
+              <button class="frame-option" type="button" data-frame="101-middle-red" data-code="101 中・紅" data-width="35" data-height="15" aria-pressed="false"><span class="frame-swatch swatch-101-middle-red"></span><span class="frame-option-info"><b>101 中・紅</b><small>框面寬 W35 · 厚度 H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-frame="101-large-brown" data-code="101 大・咖" data-width="45" data-height="15" aria-pressed="false"><span class="frame-swatch swatch-101-large-brown"></span><span class="frame-option-info"><b>101 大・咖</b><small>框面寬 W45 · 厚度 H15 mm</small></span></button>
               <button class="frame-option" type="button" data-frame="102-black" data-code="102・黑" data-width="45" data-height="15" aria-pressed="false"><span class="frame-swatch swatch-102-black"></span><span class="frame-option-info"><b>102・黑</b><small>框面寬 W45 · 厚度 H15 mm</small></span></button>
             </div>
           </div>
-          <div class="frame-catalog"><figure><img src="assets/frames/101-middle.png" alt="101 中框型與紅、咖、柚三種顏色的原始規格圖" /><figcaption>101 中｜W35・H15 mm</figcaption></figure><figure><img src="assets/frames/102-black.jpg" alt="102 黑色框型的原始規格圖" /><figcaption>102｜W45・H15 mm</figcaption></figure></div>
+          <div class="frame-catalog">
+            <figure><img src="assets/frames/101-small.jpg" alt="101 小框型的紅、咖、柚三種顏色規格圖" /><figcaption>101 小｜W21・H14 mm</figcaption></figure>
+            <figure><img src="assets/frames/101-middle-catalog.png" alt="101 中框型的紅、咖、柚三種顏色規格圖" /><figcaption>101 中｜W35・H15 mm</figcaption></figure>
+            <figure><img src="assets/frames/101-large.png" alt="101 大框型多種顏色規格圖" /><figcaption>101 大｜W45・H15 mm</figcaption></figure>
+            <figure><img src="assets/frames/102-catalog.png" alt="102 黑色框型規格圖" /><figcaption>102｜W45・H15 mm</figcaption></figure>
+          </div>
         </div>
       </section>
 
@@ -139,31 +144,31 @@
         </div>
         <div class="case-grid section-shell">
           <article class="case-card tall" data-reference="貓咪星空拼圖裝裱">
-            <button class="case-image" type="button" aria-label="以貓咪星空拼圖裝裱作為詢價參考"><img src="assets/case-front/cat-puzzle-straight.png" alt="正面校正後的墨綠細邊框貓咪拼圖" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
+            <button class="case-image" type="button" aria-label="以貓咪星空拼圖裝裱作為詢價參考"><img src="assets/case-front/cat-puzzle-straight-web.png" alt="正面校正後的墨綠細邊框貓咪拼圖" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
             <div class="case-info"><h3>貓咪星空拼圖</h3><p>墨綠細邊框 · 拼圖裝裱</p></div>
           </article>
           <article class="case-card wide" data-reference="黑鯨拼圖裝裱">
-            <button class="case-image" type="button" aria-label="以黑鯨拼圖裝裱作為詢價參考"><img src="assets/case-front/whale-puzzle-straight.png" alt="正面校正後的深色木框黑鯨拼圖" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
+            <button class="case-image" type="button" aria-label="以黑鯨拼圖裝裱作為詢價參考"><img src="assets/case-front/whale-puzzle-straight-web.png" alt="正面校正後的深色木框黑鯨拼圖" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
             <div class="case-info"><h3>黑鯨拼圖</h3><p>深色木框 · 拼圖裝裱</p></div>
           </article>
           <article class="case-card wide" data-reference="巨浪拼圖裝裱">
-            <button class="case-image" type="button" aria-label="以巨浪拼圖裝裱作為詢價參考"><img src="assets/case-front/wave-puzzle-straight.png" alt="正面校正後的深色木框巨浪拼圖" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
+            <button class="case-image" type="button" aria-label="以巨浪拼圖裝裱作為詢價參考"><img src="assets/case-front/wave-puzzle-straight-web.png" alt="正面校正後的深色木框巨浪拼圖" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
             <div class="case-info"><h3>巨浪拼圖</h3><p>深色木框 · 拼圖裝裱</p></div>
           </article>
           <article class="case-card tall" data-reference="彩色角色收藏海報裝裱">
-            <button class="case-image" type="button" aria-label="以彩色角色收藏海報裝裱作為詢價參考"><img src="assets/case-front/color-character-poster-straight.png" alt="正面校正後的亮銀細鋁框彩色角色海報" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
+            <button class="case-image" type="button" aria-label="以彩色角色收藏海報裝裱作為詢價參考"><img src="assets/case-front/color-character-poster-straight-web.png" alt="正面校正後的亮銀細鋁框彩色角色海報" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
             <div class="case-info"><h3>彩色收藏海報</h3><p>亮銀細鋁框 · 海報裝裱</p></div>
           </article>
           <article class="case-card tall" data-reference="紅色角色收藏海報裝裱">
-            <button class="case-image" type="button" aria-label="以紅色角色收藏海報裝裱作為詢價參考"><img src="assets/case-front/red-character-poster-straight.png" alt="正面校正後的亮銀細鋁框紅色角色海報" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
+            <button class="case-image" type="button" aria-label="以紅色角色收藏海報裝裱作為詢價參考"><img src="assets/case-front/red-character-poster-straight-web.png" alt="正面校正後的亮銀細鋁框紅色角色海報" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
             <div class="case-info"><h3>紅色收藏海報</h3><p>亮銀細鋁框 · 海報裝裱</p></div>
           </article>
           <article class="case-card tall" data-reference="插畫海報裝裱">
-            <button class="case-image" type="button" aria-label="以插畫海報裝裱作為詢價參考"><img src="assets/case-front/illustration-poster-straight.png" alt="正面校正後的溫潤原木框插畫海報" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
+            <button class="case-image" type="button" aria-label="以插畫海報裝裱作為詢價參考"><img src="assets/case-front/illustration-poster-straight-web.png" alt="正面校正後的溫潤原木框插畫海報" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
             <div class="case-info"><h3>插畫海報</h3><p>溫潤原木框 · 海報裝裱</p></div>
           </article>
           <article class="case-card wide" data-reference="富士山拼圖裝裱">
-            <button class="case-image" type="button" aria-label="以富士山拼圖裝裱作為詢價參考"><img src="assets/case-front/fuji-puzzle-straight.png" alt="正面校正後的古典金木框富士山拼圖" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
+            <button class="case-image" type="button" aria-label="以富士山拼圖裝裱作為詢價參考"><img src="assets/case-front/fuji-puzzle-straight-web.png" alt="正面校正後的古典金木框富士山拼圖" /><span class="select-case">以此案例詢價 <b>+</b></span></button>
             <div class="case-info"><h3>富士山拼圖</h3><p>古典金木框 · 拼圖裝裱</p></div>
           </article>
         </div>
@@ -205,8 +210,8 @@
             <fieldset class="item-selector"><legend>想要裝裱的項目 <i>*</i></legend><div class="choice-pills item-pills"><label><input type="radio" name="itemType" value="海報" required /><span>海報</span></label><label><input type="radio" name="itemType" value="拼圖" /><span>拼圖</span></label><label><input type="radio" name="itemType" value="照片" /><span>照片</span></label><label><input type="radio" name="itemType" value="美術作品" /><span>美術作品</span></label><label><input type="radio" name="itemType" value="宣紙裱褙" /><span>宣紙裱褙</span></label><label><input type="radio" name="itemType" value="捲軸" /><span>捲軸</span></label><label><input type="radio" name="itemType" value="恭賀送禮／紀念禮品" /><span>恭賀送禮</span></label></div></fieldset>
             <fieldset class="style-selector"><legend>想要的風格 <i>*</i></legend><div class="choice-pills"><label><input type="radio" name="style" value="北歐淺木框" required /><span>北歐淺木</span></label><label><input type="radio" name="style" value="霧黑細鋁框" /><span>霧黑細鋁</span></label><label><input type="radio" name="style" value="復古金飾框" /><span>復古金飾</span></label><label><input type="radio" name="style" value="請幫我推薦" /><span>請幫我推薦</span></label></div></fieldset>
             <input id="reference-example" type="hidden" name="reference" />
-            <input id="frame-code" type="hidden" name="frameCode" value="101 中・紅" />
-            <input id="frame-spec" type="hidden" name="frameSpec" value="W35 × H15 mm" />
+            <input id="frame-code" type="hidden" name="frameCode" value="101 小・紅" />
+            <input id="frame-spec" type="hidden" name="frameSpec" value="W21 × H14 mm" />
             <input id="uploaded-file-name" type="hidden" name="uploadedFileName" />
             <p class="reference-note" id="reference-note" hidden>已選擇案例：<b id="reference-name"></b></p>
             <div class="form-row two-columns">
