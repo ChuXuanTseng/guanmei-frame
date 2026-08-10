@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260810-1540" />
+    <!-- 部署 Google Apps Script 後，將 /exec 網址貼入 content；網址本身不是密碼。 -->
+    <meta name="guanmei-order-notification-endpoint" content="" />
+    <link rel="stylesheet" href="styles.css?v=20260810-1551" />
   </head>
   <body>
     <a class="skip-link" href="#order">直接前往下單表單</a>
@@ -115,6 +117,7 @@
                 <div class="preview-measure preview-measure-height"><span id="preview-height-measure">成品高約 34.2 cm</span></div>
                 <div class="preview-frame-wrap">
                   <div class="preview-frame" id="preview-frame" data-frame="101-small-red">
+                    <canvas class="texture-preview-canvas" id="texture-preview-canvas" aria-label="101 小紅實木框即時預覽" hidden></canvas>
                     <span class="frame-detail frame-detail-top" aria-hidden="true"></span>
                     <span class="frame-detail frame-detail-right" aria-hidden="true"></span>
                     <span class="frame-detail frame-detail-bottom" aria-hidden="true"></span>
@@ -138,12 +141,22 @@
               <button class="frame-filter-button" type="button" role="tab" aria-selected="false" data-frame-filter="carved">雕刻框</button>
             </div>
             <div class="frame-options">
-              <button class="frame-option is-selected" type="button" data-category="plain" data-frame="101-small-red" data-code="101 小・紅" data-width="21" data-height="14" aria-pressed="true"><img class="frame-option-image" src="assets/frames/101-small.jpg" alt="101 小紅色素面框的實物規格圖" /><span class="frame-option-info"><b>101 小・紅</b><small>W21 · H14 mm</small></span></button>
-              <button class="frame-option" type="button" data-category="plain" data-frame="101-middle-red" data-code="101 中・紅" data-width="35" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/101-middle.png" alt="101 中紅色素面框的實物規格圖" /><span class="frame-option-info"><b>101 中・紅</b><small>W35 · H15 mm</small></span></button>
-              <button class="frame-option" type="button" data-category="plain" data-frame="101-large-brown" data-code="101 大・咖" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/101-large.png" alt="101 大咖色素面框的實物規格圖" /><span class="frame-option-info"><b>101 大・咖</b><small>W45 · H15 mm</small></span></button>
-              <button class="frame-option" type="button" data-category="plain" data-frame="102-black" data-code="102・黑" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/102-catalog.png" alt="102 黑色素面框的實物規格圖" /><span class="frame-option-info"><b>102・黑</b><small>W45 · H15 mm</small></span></button>
-              <button class="frame-option" type="button" data-category="carved" data-frame="842-carved" data-code="842・白雕刻" data-width="60" data-height="29" aria-pressed="false" hidden><img class="frame-option-image" src="assets/frames/842-carved.png" alt="842 白色雕刻框的實物規格圖" /><span class="frame-option-info"><b>842・白雕刻</b><small>W60 · H29 mm</small></span></button>
-              <button class="frame-option" type="button" data-category="carved" data-frame="704-gold-carved" data-code="704・金雕刻" data-width="59" data-height="25" aria-pressed="false" hidden><img class="frame-option-image" src="assets/frames/704-gold-carved.jpg" alt="704 金色雕刻框的實物規格圖" /><span class="frame-option-info"><b>704・金雕刻</b><small>W59 · H25 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-small-coffee" data-code="101 小・咖" data-width="21" data-height="14" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-small-coffee.webp" alt="101 小咖色素面框" /><span class="frame-option-info"><b>101 小・咖</b><small>W21 · H14 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-small-teak" data-code="101 小・柚" data-width="21" data-height="14" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-small-teak.webp" alt="101 小柚色素面框" /><span class="frame-option-info"><b>101 小・柚</b><small>W21 · H14 mm</small></span></button>
+              <button class="frame-option is-selected" type="button" data-category="plain" data-frame="101-small-red" data-code="101 小・紅" data-width="21" data-height="14" aria-pressed="true"><img class="frame-option-image" src="assets/frames/options/101-small-red.webp" alt="101 小紅色素面框" /><span class="frame-option-info"><b>101 小・紅</b><small>W21 · H14 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-middle-red" data-code="101 中・紅" data-width="35" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-middle-red.webp" alt="101 中紅色素面框" /><span class="frame-option-info"><b>101 中・紅</b><small>W35 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-middle-coffee" data-code="101 中・咖" data-width="35" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-middle-coffee.webp" alt="101 中咖色素面框" /><span class="frame-option-info"><b>101 中・咖</b><small>W35 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-middle-teak" data-code="101 中・柚" data-width="35" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-middle-teak.webp" alt="101 中柚色素面框" /><span class="frame-option-info"><b>101 中・柚</b><small>W35 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-large-coffee" data-code="101 大・咖" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-large-coffee.webp" alt="101 大咖色素面框" /><span class="frame-option-info"><b>101 大・咖</b><small>W45 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-large-green" data-code="101 大・綠" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-large-green.webp" alt="101 大綠色素面框" /><span class="frame-option-info"><b>101 大・綠</b><small>W45 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-large-red" data-code="101 大・紅" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-large-red.webp" alt="101 大紅色素面框" /><span class="frame-option-info"><b>101 大・紅</b><small>W45 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-large-purple" data-code="101 大・紫" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-large-purple.webp" alt="101 大紫色素面框" /><span class="frame-option-info"><b>101 大・紫</b><small>W45 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-large-teak" data-code="101 大・柚" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-large-teak.webp" alt="101 大柚色素面框" /><span class="frame-option-info"><b>101 大・柚</b><small>W45 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-large-blue" data-code="101 大・藍" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-large-blue.webp" alt="101 大藍色素面框" /><span class="frame-option-info"><b>101 大・藍</b><small>W45 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-large-plain" data-code="101 大・原木" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/101-large-plain.webp" alt="101 大原木色素面框" /><span class="frame-option-info"><b>101 大・原木</b><small>W45 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="102-black" data-code="102・黑" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/options/102-black.webp" alt="102 黑色素面框" /><span class="frame-option-info"><b>102・黑</b><small>W45 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="carved" data-frame="carved-test-1" data-code="雕刻框測試 1" data-spec="實物規格待確認" data-width="60" data-height="29" aria-pressed="false" hidden><img class="frame-option-image" src="assets/frames/options/carved-test-1.png" alt="金色多層花飾雕刻框測試 1" /><span class="frame-option-info"><b>雕刻框測試 1</b><small>規格待確認</small></span></button>
+              <button class="frame-option" type="button" data-category="carved" data-frame="carved-test-2" data-code="雕刻框測試 2" data-spec="實物規格待確認" data-width="80" data-height="35" aria-pressed="false" hidden><img class="frame-option-image" src="assets/frames/options/carved-test-2.png" alt="深咖啡層次雕刻框測試 2" /><span class="frame-option-info"><b>雕刻框測試 2</b><small>規格待確認</small></span></button>
             </div>
           </div>
         </div>
@@ -238,13 +251,13 @@
             <button class="button button-cream submit-button" type="submit">送出詢價單 <span>→</span></button>
             <p class="form-footnote">送出後我們會主動與您確認需求，正式製作前皆會先提供報價。</p>
           </form>
-          <div class="success-message" id="success-message" hidden aria-live="polite"><span>✓</span><h3>詢價需求已儲存</h3><p>感謝您的填寫！您的詢價編號是 <b id="quote-number"></b>。</p><p class="subtle">這個展示版會先將資料儲存在目前瀏覽器；實際上線時可串接 Email、LINE 或訂單後台接收。</p><button class="text-link" id="new-order" type="button">再填一份詢價單 <span>→</span></button></div>
+          <div class="success-message" id="success-message" hidden aria-live="polite"><span>✓</span><h3>詢價單已建立</h3><p>感謝您的填寫！您的詢價編號是 <b id="quote-number"></b>。</p><p class="subtle">請按下方按鈕開啟冠美官方 LINE；系統會帶入本次詢價內容。請再於 LINE 完成送出，方便我們一對一回覆。</p><a class="button button-line" id="send-order-line" href="https://line.me/R/ti/p/%40gmgm" target="_blank" rel="noopener noreferrer">傳送詢價單到官方 LINE <span>↗</span></a><p class="line-send-note" id="line-send-note">若尚未加入好友，LINE 會先請你加入冠美相框；請再於 LINE 完成送出，方便我們一對一回覆。</p><button class="text-link" id="new-order" type="button">再填一份詢價單 <span>→</span></button></div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer section-shell"><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><b></b></span><span>冠美相框<small>GUAN MEI FRAME</small></span></a><p>把美好留在眼前，把故事留在心裡。</p><a href="#top" class="back-top">回到頂端 ↑</a></footer>
-    <a class="line-float" href="https://line.me/R/ti/p/@gmgm" target="_blank" rel="noopener noreferrer" aria-label="開啟冠美相框官方 LINE（@gmgm）"><span>官方 LINE</span><b>@gmgm</b></a>
+    <a class="line-float" href="https://line.me/R/ti/p/@gmgm" target="_blank" rel="noopener noreferrer" aria-label="掃描 QR Code 或開啟冠美相框官方 LINE（@gmgm）"><img src="assets/line-qr.png" alt="冠美相框官方 LINE QR Code" /><span><b>官方 LINE</b><small>@gmgm</small><em>點擊立即加入</em></span></a>
     <script src="script.js"></script>
   </body>
 </html>

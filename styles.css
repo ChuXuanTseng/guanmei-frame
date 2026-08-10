@@ -122,6 +122,47 @@ h2 { font-size: clamp(30px, 3.25vw, 47px); line-height: 1.45; }
 .preview-frame[data-frame="101-middle-red"] { --frame-fill: repeating-linear-gradient(104deg, rgba(255,255,255,.09) 0 1px, transparent 1px 5px), linear-gradient(125deg, #b2382b, #67130f 42%, #9f2e23 70%, #58100d); }
 .preview-frame[data-frame="101-large-brown"] { --frame-fill: repeating-linear-gradient(105deg, rgba(255,255,255,.1) 0 1px, transparent 1px 6px), linear-gradient(125deg, #5e4039, #181211 44%, #4b302c 72%, #171010); }
 
+/* 右側固定的官方 LINE QR Code；整張卡片皆可直接開啟加入好友頁面。 */
+.line-float { position: fixed; z-index: 70; right: 20px; bottom: 20px; display: grid; grid-template-columns: 68px minmax(68px, 1fr); gap: 8px; align-items: center; min-width: 164px; padding: 7px; color: #126e37; background: #fff; border: 2px solid #06c755; border-radius: 14px; box-shadow: 0 10px 22px rgba(12, 103, 54, .23), 0 3px 7px rgba(0,0,0,.13); font-family: var(--sans); line-height: 1.25; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.line-float:hover, .line-float:focus-visible { color: #0a5a2d; border-color: #05ad49; transform: translateY(-3px); box-shadow: 0 16px 30px rgba(12, 103, 54, .31), 0 4px 8px rgba(0,0,0,.14); outline: none; }
+.line-float img { display: block; width: 68px; height: 68px; padding: 2px; background: #fff; object-fit: contain; }
+.line-float > span { display: grid; gap: 3px; min-width: 0; }
+.line-float b { padding-left: 0; border-left: 0; font: 600 14px var(--serif); letter-spacing: .05em; }
+.line-float small { color: #5c846b; font-size: 10px; }
+.line-float em { color: #06a947; font-size: 10px; font-style: normal; white-space: nowrap; }
+
+/* 每張框型圖只保留一個框，所有顏色皆為獨立可選的按鈕。 */
+.frame-options { grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); }
+.frame-option { min-height: 132px; }
+.frame-option-image { aspect-ratio: 2.3 / 1; object-fit: contain; background: linear-gradient(135deg, #d8d5cc, #f1ede5); }
+
+/* 素面框：依框型厚度保留斷面比例，再對應各色木紋。 */
+.preview-frame[data-frame^="101-small-"] { --frame-inner-edge: #eee5d2; --frame-inner-shadow: #55201c; }
+.preview-frame[data-frame^="101-middle-"] { --frame-inner-edge: #f1e6d5; --frame-inner-shadow: #63211a; }
+.preview-frame[data-frame^="101-large-"] { --frame-inner-edge: #d8c9b6; --frame-inner-shadow: #21130f; }
+.preview-frame[data-frame$="-red"] { --frame-fill: repeating-linear-gradient(104deg, rgba(255,255,255,.1) 0 1px, transparent 1px 5px), linear-gradient(125deg, #b53b34, #6e1713 42%, #a8322a 70%, #55100e); --frame-top-face: linear-gradient(to bottom, rgba(255,224,196,.38), transparent 11%, rgba(49,10,7,.3) 86%, rgba(35,8,6,.63)), repeating-linear-gradient(2deg, #a73c39 0 3px, #8e2c2c 3px 6px, #b94b47 6px 9px, #72211f 9px 12px); --frame-side-face: linear-gradient(to right, rgba(45,9,7,.45), transparent 23%, rgba(255,220,190,.2) 78%, rgba(45,9,7,.42)), repeating-linear-gradient(88deg, #9d3532 0 3px, #74201e 3px 7px, #bd4c48 7px 10px); }
+.preview-frame[data-frame$="-coffee"] { --frame-fill: repeating-linear-gradient(104deg, rgba(255,255,255,.08) 0 1px, transparent 1px 6px), linear-gradient(125deg, #4a332e, #14100f 42%, #3f2a27 70%, #110d0d); --frame-top-face: linear-gradient(to bottom, rgba(202,177,151,.25), transparent 10%, rgba(0,0,0,.4) 86%, rgba(3,2,2,.75)), repeating-linear-gradient(2deg, #45302c 0 4px, #1a1211 4px 8px, #604039 8px 12px, #17100f 12px 16px); --frame-side-face: linear-gradient(to right, #100b0a, rgba(191,158,128,.18) 44%, #2a1b19 62%, #0b0908), repeating-linear-gradient(88deg, #3e2924 0 4px, #140e0c 4px 8px, #593a34 8px 12px); }
+.preview-frame[data-frame$="-teak"] { --frame-fill: repeating-linear-gradient(104deg, rgba(255,244,203,.11) 0 1px, transparent 1px 6px), linear-gradient(125deg, #c87929, #704017 42%, #c87b2d 70%, #744016); --frame-top-face: linear-gradient(to bottom, rgba(255,224,166,.37), transparent 11%, rgba(73,35,8,.32) 86%, rgba(55,24,5,.64)), repeating-linear-gradient(2deg, #c77a2b 0 3px, #9b5419 3px 6px, #dd9a49 6px 9px, #864416 9px 13px); --frame-side-face: linear-gradient(to right, rgba(91,42,7,.48), transparent 25%, rgba(255,219,157,.2) 77%, rgba(72,31,5,.48)), repeating-linear-gradient(88deg, #bd6b22 0 3px, #7d3c0b 3px 7px, #dc9341 7px 10px); }
+.preview-frame[data-frame$="-green"] { --frame-fill: repeating-linear-gradient(104deg, rgba(236,255,207,.11) 0 1px, transparent 1px 6px), linear-gradient(125deg, #7cb96a, #2f6b46 43%, #77ab65 70%, #28583b); --frame-top-face: linear-gradient(to bottom, rgba(234,255,204,.36), transparent 12%, rgba(17,65,30,.32) 86%, rgba(12,49,23,.66)), repeating-linear-gradient(2deg, #74ae65 0 3px, #3c7d48 3px 6px, #96c777 6px 9px, #2c6339 9px 13px); --frame-side-face: linear-gradient(to right, rgba(20,68,29,.47), transparent 24%, rgba(233,255,194,.2) 77%, rgba(14,53,24,.48)), repeating-linear-gradient(88deg, #6ca35c 0 3px, #326b40 3px 7px, #91c372 7px 10px); }
+.preview-frame[data-frame$="-purple"] { --frame-fill: repeating-linear-gradient(104deg, rgba(244,224,255,.11) 0 1px, transparent 1px 6px), linear-gradient(125deg, #85648d, #44344e 43%, #7a5b82 70%, #3b2e45); --frame-top-face: linear-gradient(to bottom, rgba(249,224,255,.34), transparent 12%, rgba(41,25,53,.34) 86%, rgba(27,17,36,.68)), repeating-linear-gradient(2deg, #80628a 0 3px, #513d5d 3px 6px, #9675a0 6px 9px, #41314b 9px 13px); --frame-side-face: linear-gradient(to right, rgba(43,28,55,.5), transparent 24%, rgba(243,219,255,.19) 77%, rgba(35,22,47,.5)), repeating-linear-gradient(88deg, #795d84 0 3px, #483452 3px 7px, #93729c 7px 10px); }
+.preview-frame[data-frame$="-blue"] { --frame-fill: repeating-linear-gradient(104deg, rgba(210,252,255,.1) 0 1px, transparent 1px 6px), linear-gradient(125deg, #4a96a0, #1d5b69 43%, #4b919b 70%, #1b4b59); --frame-top-face: linear-gradient(to bottom, rgba(209,250,255,.32), transparent 12%, rgba(10,59,72,.34) 86%, rgba(7,44,55,.68)), repeating-linear-gradient(2deg, #4f99a1 0 3px, #246674 3px 6px, #69adb1 6px 9px, #1b5361 9px 13px); --frame-side-face: linear-gradient(to right, rgba(11,57,70,.5), transparent 24%, rgba(201,247,255,.18) 77%, rgba(8,45,57,.5)), repeating-linear-gradient(88deg, #478f98 0 3px, #1e5d6b 3px 7px, #63a9ae 7px 10px); }
+.preview-frame[data-frame$="-plain"] { --frame-fill: repeating-linear-gradient(104deg, rgba(255,255,231,.18) 0 1px, transparent 1px 6px), linear-gradient(125deg, #f4d766, #b89125 43%, #efd15a 70%, #a47c1f); --frame-top-face: linear-gradient(to bottom, rgba(255,255,220,.45), transparent 12%, rgba(112,77,11,.24) 86%, rgba(82,55,4,.54)), repeating-linear-gradient(2deg, #efd266 0 3px, #d6b646 3px 6px, #fff083 6px 9px, #b89529 9px 13px); --frame-side-face: linear-gradient(to right, rgba(111,76,10,.4), transparent 24%, rgba(255,255,212,.24) 77%, rgba(91,59,6,.45)), repeating-linear-gradient(88deg, #e6c553 0 3px, #be9d2d 3px 7px, #fae473 7px 10px); }
+
+/* 雕刻框：分別呈現白、銀、金三種浮雕表面。 */
+.preview-frame[data-frame="842-white"] { --frame-fill: linear-gradient(130deg, #f6f2e7 0 15%, #c59741 17% 21%, #fffdf4 23% 57%, #d3a644 59% 64%, #ece8dd 66% 100%); --frame-top-face: linear-gradient(to bottom, #fffefa 0 7%, #d8d4c9 10%, #fffdf9 25%, #efebe1 59%, #b79038 61% 66%, #fffdf6 68% 90%, #b7aca0); --frame-side-face: linear-gradient(to right, #bbb8af, #fffefb 18%, #ece8df 48%, #c79c3e 53% 58%, #fffdf8 62%, #c6c0b7); --frame-relief: repeating-linear-gradient(50deg, transparent 0 8px, rgba(129,112,85,.8) 8px 10px, rgba(255,255,255,.8) 11px 14px, transparent 15px 23px), repeating-linear-gradient(-50deg, transparent 0 11px, rgba(179,132,34,.82) 12px 14px, transparent 15px 27px); --frame-inner-edge: #b2872c; --frame-inner-shadow: rgba(109,81,25,.7); --frame-outer-edge: #b7b1a6; }
+.preview-frame[data-frame="842-silver"] { --frame-fill: linear-gradient(130deg, #dee2df 0 13%, #77817f 17% 24%, #f9fbf9 28% 58%, #9ca6a5 61% 67%, #e6e9e7 72% 100%); --frame-top-face: linear-gradient(to bottom, #f7f9f8, #9ba5a4 13%, #e8edeb 34%, #737e7d 61%, #f3f5f4 76%, #8b9594); --frame-side-face: linear-gradient(to right, #7c8685, #e8edeb 21%, #a8b2b1 51%, #f5f8f7 74%, #737d7c); --frame-relief: repeating-linear-gradient(50deg, transparent 0 8px, rgba(56,71,70,.72) 8px 10px, rgba(255,255,255,.82) 11px 14px, transparent 15px 23px), repeating-linear-gradient(-50deg, transparent 0 11px, rgba(132,145,144,.8) 12px 14px, transparent 15px 27px); --frame-inner-edge: #dfe5e2; --frame-inner-shadow: #667170; --frame-outer-edge: #707a79; }
+.preview-frame[data-frame="842-gold"], .preview-frame[data-frame="704-gold"] { --frame-fill: repeating-linear-gradient(105deg, rgba(255,246,176,.3) 0 2px, rgba(99,56,5,.12) 2px 5px), linear-gradient(130deg, #7b4c0b, #f3c54c 30%, #8d5b0e 56%, #d7a62e 75%, #67400b); --frame-top-face: linear-gradient(to bottom, #fff0a0 0 5%, #85601d 9%, #d39b26 26%, #8f5d12 54%, #e9bd45 74%, #674315 100%); --frame-side-face: linear-gradient(to right, #654112, #e8bd47 22%, #9c6a17 50%, #f2cf61 76%, #613e10); --frame-relief: radial-gradient(circle at 9px 9px, #fff0a1 0 2px, #936019 2.6px 4.5px, transparent 5px) 0 0 / 19px 19px repeat, repeating-linear-gradient(135deg, transparent 0 7px, rgba(91,55,9,.72) 8px 10px, rgba(255,237,137,.46) 11px 13px, transparent 14px 22px); --frame-inner-edge: #f4d875; --frame-inner-shadow: #6a4210; --frame-outer-edge: #6a4817; }
+.preview-frame[data-frame^="842-"] .frame-detail::after, .preview-frame[data-frame="704-gold"] .frame-detail::after { opacity: .7; mix-blend-mode: overlay; }
+.preview-frame[data-frame^="842-"] .preview-artwork::before, .preview-frame[data-frame="704-gold"] .preview-artwork::before { border-color: rgba(255,247,187,.9); box-shadow: inset 0 0 0 2px var(--frame-inner-shadow), inset 0 0 0 5px rgba(255,255,255,.35); }
+
+@media (max-width: 500px) { .line-float { right: 12px; bottom: 14px; grid-template-columns: 62px; min-width: 0; padding: 5px; border-radius: 12px; }.line-float img { width: 62px; height: 62px; }.line-float > span { display: none; } }
+
+/* 101 小紅先採用真實框條照片的平鋪材質，畫布依作品尺寸即時重繪四邊框條。 */
+.texture-preview-canvas { position: absolute; z-index: 20; inset: 0; display: block; width: 100%; height: 100%; }
+.texture-preview-canvas[hidden] { display: none; }
+.preview-frame.is-texture-preview { padding: 0; background: transparent; box-shadow: none; }
+.preview-frame.is-texture-preview::before, .preview-frame.is-texture-preview::after { display: none; }
+.preview-frame.is-texture-preview > :not(.texture-preview-canvas) { visibility: hidden; }
 /* 預覽框的四個實體面：讓木紋、倒角、內唇與雕花不只是一片色塊。 */
 .preview-frame { --frame-top-face: linear-gradient(to bottom, #7c392d, #a24739 44%, #5d1f18); --frame-side-face: linear-gradient(to right, #6b241c, #b14b3d 48%, #571b15); --frame-relief: none; --frame-outer-edge: rgba(36, 21, 14, .76); --frame-inner-edge: #f4e4cf; --frame-inner-shadow: rgba(47, 24, 14, .64); isolation: isolate; overflow: visible; background: #5d241c; box-shadow: 0 18px 26px rgba(55, 37, 25, .34), 0 4px 7px rgba(55, 37, 25, .24), 0 1px 0 rgba(255,255,255,.45), inset 0 0 0 1px rgba(255,255,255,.16); }
 .frame-detail { position: absolute; z-index: 2; overflow: hidden; display: block; pointer-events: none; }
@@ -158,13 +199,20 @@ h2 { font-size: clamp(30px, 3.25vw, 47px); line-height: 1.45; }
 
 @media (max-width: 500px) { .preview-frame::after { box-shadow: 0 0 0 1px var(--frame-inner-shadow); }.frame-detail::after { opacity: .52; } }
 
-/* 右側固定的官方 LINE 入口；直接開啟加入好友頁面。 */
-.line-float { position: fixed; z-index: 70; right: 20px; bottom: 20px; display: inline-flex; align-items: center; gap: 7px; padding: 10px 14px; color: #fff; background: #06c755; border: 1px solid #06b64d; border-radius: 999px; box-shadow: 0 10px 22px rgba(12, 103, 54, .24), 0 3px 7px rgba(0,0,0,.12); font-family: var(--sans); line-height: 1; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
-.line-float::before { content: "LINE"; display: grid; place-items: center; width: 24px; height: 18px; color: #06b84e; background: #fff; border-radius: 5px; font-size: 8px; font-weight: 800; letter-spacing: -.04em; }
-.line-float:hover, .line-float:focus-visible { color: #fff; background: #05ad49; transform: translateY(-3px); box-shadow: 0 16px 30px rgba(12, 103, 54, .31), 0 4px 8px rgba(0,0,0,.14); outline: none; }
-.line-float span { font-size: 13px; font-weight: 700; letter-spacing: .03em; }
-.line-float b { padding-left: 7px; border-left: 1px solid rgba(255,255,255,.48); font-size: 12px; font-weight: 500; }
-@media (max-width: 500px) { .line-float { right: 12px; bottom: 14px; padding: 9px 12px; }.line-float span { font-size: 12px; } }
+/* 右側固定的官方 LINE QR Code；整張卡片皆可直接開啟 LINE。 */
+.line-float { position: fixed; z-index: 70; right: 20px; bottom: 20px; display: grid; grid-template-columns: 68px minmax(68px, 1fr); gap: 8px; align-items: center; min-width: 164px; padding: 7px; color: #126e37; background: #fff; border: 2px solid #06c755; border-radius: 14px; box-shadow: 0 10px 22px rgba(12, 103, 54, .23), 0 3px 7px rgba(0,0,0,.13); font-family: var(--sans); line-height: 1.25; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.line-float:hover, .line-float:focus-visible { color: #0a5a2d; border-color: #05ad49; transform: translateY(-3px); box-shadow: 0 16px 30px rgba(12, 103, 54, .31), 0 4px 8px rgba(0,0,0,.14); outline: none; }
+.line-float img { display: block; width: 68px; height: 68px; padding: 2px; background: #fff; object-fit: contain; }
+.line-float > span { display: grid; gap: 3px; min-width: 0; }
+.line-float b { font: 600 14px var(--serif); letter-spacing: .05em; }
+.line-float small { color: #5c846b; font-size: 10px; }
+.line-float em { color: #06a947; font-size: 10px; font-style: normal; white-space: nowrap; }
+@media (max-width: 500px) { .line-float { right: 12px; bottom: 14px; grid-template-columns: 62px; min-width: 0; padding: 5px; border-radius: 12px; }.line-float img { width: 62px; height: 62px; }.line-float > span { display: none; } }
+
+/* 詢價單完成後，由客人確認內容再傳送至官方 LINE。 */
+.success-message .button-line { width: min(100%, 330px); margin: 20px auto 0; color: #fff; background: #06c755; text-decoration: none; }
+.success-message .button-line:hover, .success-message .button-line:focus-visible { background: #05ad49; color: #fff; outline: none; }
+.line-send-note { margin-top: 10px !important; color: #80786f !important; font-size: 10px !important; }
 .preview-frame[data-frame="102-black"] { --frame-fill: repeating-linear-gradient(104deg, rgba(255,255,255,.07) 0 1px, transparent 1px 5px), linear-gradient(125deg, #4a4542, #111010 44%, #2b2928 72%, #090909); }
 .preview-frame[data-frame="842-carved"] { --frame-fill: linear-gradient(130deg, #f6f2e7 0 15%, #c59741 17% 21%, #fffdf4 23% 57%, #d3a644 59% 64%, #ece8dd 66% 100%); box-shadow: 0 18px 25px rgba(55, 37, 25, .32), 0 4px 6px rgba(55, 37, 25, .22), inset 0 0 0 2px #fffdf0, inset 0 0 0 7px rgba(157,110,28,.38); }
 .preview-frame[data-frame="704-gold-carved"] { --frame-fill: repeating-linear-gradient(105deg, rgba(255,246,176,.3) 0 2px, rgba(99,56,5,.12) 2px 5px), linear-gradient(130deg, #7b4c0b, #f3c54c 30%, #8d5b0e 56%, #d7a62e 75%, #67400b); box-shadow: 0 18px 25px rgba(55, 37, 25, .36), 0 4px 6px rgba(55, 37, 25, .25), inset 0 0 0 2px rgba(255,235,152,.62); }
@@ -209,27 +257,3 @@ h2 { font-size: clamp(30px, 3.25vw, 47px); line-height: 1.45; }
 .preview-frame[data-frame="101-small-red"] { --frame-fill: repeating-linear-gradient(104deg, rgba(255,255,255,.09) 0 1px, transparent 1px 5px), linear-gradient(125deg, #c14435, #751912 42%, #b5392c 70%, #61140e); }
 .preview-frame[data-frame="101-middle-red"] { --frame-fill: repeating-linear-gradient(104deg, rgba(255,255,255,.09) 0 1px, transparent 1px 5px), linear-gradient(125deg, #b2382b, #67130f 42%, #9f2e23 70%, #58100d); }
 .preview-frame[data-frame="101-large-brown"] { --frame-fill: repeating-linear-gradient(105deg, rgba(255,255,255,.1) 0 1px, transparent 1px 6px), linear-gradient(125deg, #5e4039, #181211 44%, #4b302c 72%, #171010); }
-
-
-/* 恢復官方 LINE QR Code；整張卡片可直接加入好友。 */
-.line-float { position: fixed; z-index: 70; right: 20px; bottom: 20px; display: grid; grid-template-columns: 68px minmax(68px, 1fr); gap: 8px; align-items: center; min-width: 164px; padding: 7px; color: #126e37; background: #fff; border: 2px solid #06c755; border-radius: 14px; box-shadow: 0 10px 22px rgba(12, 103, 54, .23), 0 3px 7px rgba(0,0,0,.13); font-family: var(--sans); line-height: 1.25; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
-.line-float::before { content: ""; display: block; width: 68px; height: 68px; padding: 2px; background: #fff url("assets/line-qr.png") center / contain no-repeat; }
-.line-float:hover, .line-float:focus-visible { color: #0a5a2d; border-color: #05ad49; transform: translateY(-3px); box-shadow: 0 16px 30px rgba(12, 103, 54, .31), 0 4px 8px rgba(0,0,0,.14); outline: none; }
-.line-float span { display: grid; gap: 3px; min-width: 0; font-size: inherit; font-weight: inherit; letter-spacing: normal; }
-.line-float b { padding-left: 0; border-left: 0; font: 600 14px var(--serif); letter-spacing: .05em; }
-.line-float span::after { content: "點擊立即加入"; color: #06a947; font-size: 10px; white-space: nowrap; }
-@media (max-width: 500px) { .line-float { right: 12px; bottom: 14px; grid-template-columns: 62px; min-width: 0; padding: 5px; border-radius: 12px; }.line-float::before { width: 62px; height: 62px; }.line-float span { display: none; } }
-
-
-/* QR Code 卡片文字維持兩行，避免高度過高。 */
-.line-float { grid-template-columns: 68px minmax(68px, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); }
-.line-float::before { grid-column: 1; grid-row: 1 / span 2; }
-.line-float span { grid-column: 2; grid-row: 1; display: block; align-self: end; font: 600 14px var(--serif); letter-spacing: .05em; }
-.line-float span::after { content: none; }
-.line-float b { grid-column: 2; grid-row: 2; align-self: start; color: #5c846b; font: 500 10px var(--sans); letter-spacing: 0; }
-.line-float b::after { content: "　·　點擊立即加入"; color: #06a947; font-size: 10px; font-weight: 400; white-space: nowrap; }
-@media (max-width: 500px) { .line-float { grid-template-columns: 62px; grid-template-rows: 62px; }.line-float::before { grid-column: 1; grid-row: 1; }.line-float b { display: none; } }
-
-
-/* QR Code 卡片維持 QR 與帳號兩行資訊，避免文字換行撐高卡片。 */
-.line-float b::after { content: none; }
