@@ -90,7 +90,7 @@
           <div class="preview-heading">
             <div class="section-kicker"><span>03</span> 線上框型預覽</div>
             <h2>先看一眼，<br />作品掛上牆的樣子。</h2>
-            <p>上傳你的照片或作品圖，選擇喜歡的框型與顏色，即可看到快速示意。<br />W 為框面寬、H 為框條厚度，單位皆為 mm。</p>
+            <p>上傳你的照片或作品圖，輸入作品長寬並選擇框型，就能立即查看接近成品比例的示意。<br />W 為框面寬、H 為框條厚度，單位皆為 mm。</p>
           </div>
           <div class="preview-workspace">
             <div class="upload-column">
@@ -101,35 +101,46 @@
                 <small>支援 JPG、PNG、WEBP</small>
               </label>
               <p class="upload-status" id="upload-status">圖片只會在目前裝置上預覽，不會上傳到網站。</p>
-              <div class="catalog-hint"><span>已載入 4 款框型資料</span><p>101 小 · W21 / H14<br />101 中 · W35 / H15<br />101 大、102 · W45 / H15</p></div>
+              <div class="preview-size-controls" aria-label="設定作品尺寸">
+                <span>作品尺寸</span>
+                <label>寬 <input id="artwork-width" type="number" value="40" min="5" max="200" step="0.1" inputmode="decimal" /> <em>cm</em></label>
+                <b aria-hidden="true">×</b>
+                <label>高 <input id="artwork-height" type="number" value="30" min="5" max="200" step="0.1" inputmode="decimal" /> <em>cm</em></label>
+              </div>
+              <div class="catalog-hint"><span>預覽會依作品尺寸與框面寬換算</span><p>尺寸僅為視覺比例示意；實際開口、卡紙與作品留邊會由門市確認。</p></div>
             </div>
             <div class="live-preview-panel">
               <div class="preview-label"><span>即時預覽</span><b id="selected-frame-name">101 小・紅</b></div>
-              <div class="preview-stage">
-                <div class="preview-frame" id="preview-frame" data-frame="101-small-red">
-                  <div class="preview-artwork">
-                    <img id="preview-artwork-image" alt="客戶上傳作品的相框預覽" hidden />
-                    <div class="preview-placeholder" id="preview-placeholder"><span>✦</span><b>你的作品會顯示在這裡</b><small>先上傳一張照片或作品圖</small></div>
+              <div class="preview-stage" id="preview-stage">
+                <div class="preview-measure preview-measure-height"><span id="preview-height-measure">成品高約 34.2 cm</span></div>
+                <div class="preview-frame-wrap">
+                  <div class="preview-frame" id="preview-frame" data-frame="101-small-red">
+                    <div class="preview-artwork">
+                      <img id="preview-artwork-image" alt="客戶上傳作品的相框預覽" hidden />
+                      <div class="preview-placeholder" id="preview-placeholder"><span>✦</span><b>你的作品會顯示在這裡</b><small>先上傳一張照片或作品圖</small></div>
+                    </div>
                   </div>
                 </div>
+                <div class="preview-measure preview-measure-width"><span id="preview-width-measure">成品寬約 44.2 cm</span></div>
               </div>
+              <p class="preview-size-summary" id="preview-size-summary" aria-live="polite">作品 40 × 30 cm · 成品約 44.2 × 34.2 cm</p>
               <p class="preview-disclaimer">此為框型比例與顏色的快速示意；木紋、色澤與實際尺寸請以正式報價及門市樣品為準。</p>
             </div>
           </div>
           <div class="frame-picker" aria-label="選擇框型">
-            <div class="picker-label"><span>選擇框型</span><p>點選即可更新預覽</p></div>
-            <div class="frame-options">
-              <button class="frame-option is-selected" type="button" data-frame="101-small-red" data-code="101 小・紅" data-width="21" data-height="14" aria-pressed="true"><span class="frame-swatch swatch-101-small-red"></span><span class="frame-option-info"><b>101 小・紅</b><small>框面寬 W21 · 厚度 H14 mm</small></span></button>
-              <button class="frame-option" type="button" data-frame="101-middle-red" data-code="101 中・紅" data-width="35" data-height="15" aria-pressed="false"><span class="frame-swatch swatch-101-middle-red"></span><span class="frame-option-info"><b>101 中・紅</b><small>框面寬 W35 · 厚度 H15 mm</small></span></button>
-              <button class="frame-option" type="button" data-frame="101-large-brown" data-code="101 大・咖" data-width="45" data-height="15" aria-pressed="false"><span class="frame-swatch swatch-101-large-brown"></span><span class="frame-option-info"><b>101 大・咖</b><small>框面寬 W45 · 厚度 H15 mm</small></span></button>
-              <button class="frame-option" type="button" data-frame="102-black" data-code="102・黑" data-width="45" data-height="15" aria-pressed="false"><span class="frame-swatch swatch-102-black"></span><span class="frame-option-info"><b>102・黑</b><small>框面寬 W45 · 厚度 H15 mm</small></span></button>
+            <div class="picker-label"><span>選擇框型</span><p>點選實物圖，即可更新預覽</p></div>
+            <div class="frame-filter" role="tablist" aria-label="框型分類">
+              <button class="frame-filter-button is-active" type="button" role="tab" aria-selected="true" data-frame-filter="plain">素面框</button>
+              <button class="frame-filter-button" type="button" role="tab" aria-selected="false" data-frame-filter="carved">雕刻框</button>
             </div>
-          </div>
-          <div class="frame-catalog">
-            <figure><img src="assets/frames/101-small.jpg" alt="101 小框型的紅、咖、柚三種顏色規格圖" /><figcaption>101 小｜W21・H14 mm</figcaption></figure>
-            <figure><img src="assets/frames/101-middle-catalog.png" alt="101 中框型的紅、咖、柚三種顏色規格圖" /><figcaption>101 中｜W35・H15 mm</figcaption></figure>
-            <figure><img src="assets/frames/101-large.png" alt="101 大框型多種顏色規格圖" /><figcaption>101 大｜W45・H15 mm</figcaption></figure>
-            <figure><img src="assets/frames/102-catalog.png" alt="102 黑色框型規格圖" /><figcaption>102｜W45・H15 mm</figcaption></figure>
+            <div class="frame-options">
+              <button class="frame-option is-selected" type="button" data-category="plain" data-frame="101-small-red" data-code="101 小・紅" data-width="21" data-height="14" aria-pressed="true"><img class="frame-option-image" src="assets/frames/101-small.jpg" alt="101 小紅色素面框的實物規格圖" /><span class="frame-option-info"><b>101 小・紅</b><small>W21 · H14 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-middle-red" data-code="101 中・紅" data-width="35" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/101-middle.png" alt="101 中紅色素面框的實物規格圖" /><span class="frame-option-info"><b>101 中・紅</b><small>W35 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="101-large-brown" data-code="101 大・咖" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/101-large.png" alt="101 大咖色素面框的實物規格圖" /><span class="frame-option-info"><b>101 大・咖</b><small>W45 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="plain" data-frame="102-black" data-code="102・黑" data-width="45" data-height="15" aria-pressed="false"><img class="frame-option-image" src="assets/frames/102-catalog.png" alt="102 黑色素面框的實物規格圖" /><span class="frame-option-info"><b>102・黑</b><small>W45 · H15 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="carved" data-frame="842-carved" data-code="842・白雕刻" data-width="60" data-height="29" aria-pressed="false" hidden><img class="frame-option-image" src="assets/frames/842-carved.png" alt="842 白色雕刻框的實物規格圖" /><span class="frame-option-info"><b>842・白雕刻</b><small>W60 · H29 mm</small></span></button>
+              <button class="frame-option" type="button" data-category="carved" data-frame="704-gold-carved" data-code="704・金雕刻" data-width="59" data-height="25" aria-pressed="false" hidden><img class="frame-option-image" src="assets/frames/704-gold-carved.jpg" alt="704 金色雕刻框的實物規格圖" /><span class="frame-option-info"><b>704・金雕刻</b><small>W59 · H25 mm</small></span></button>
+            </div>
           </div>
         </div>
       </section>
