@@ -105,3 +105,11 @@ h2 { font-size: clamp(30px, 3.25vw, 47px); line-height: 1.45; }
 
 @media (max-width: 850px) { .service-grid { grid-template-columns: repeat(2, 1fr); }.service-card-gift { grid-column: auto; } }
 @media (max-width: 500px) { .service-card-photo { min-height: 210px; }.service-card-photo > .service-card-content { padding: 14px; }.service-card-photo > .service-card-content b { font-size: 20px; } }
+
+/* Four actual frame profiles supplied by 冠美。 */
+.preview-frame[data-frame="101-small-red"] { --frame-size: 18px; --frame-fill: linear-gradient(135deg, #b53d2d, #6f1510 50%, #c6523d); }
+.preview-frame[data-frame="101-middle-red"] { --frame-size: 27px; --frame-fill: linear-gradient(135deg, #a92e20, #7a160f 36%, #bd4934 67%, #7e1d12); }
+.preview-frame[data-frame="101-large-brown"] { --frame-size: 35px; --frame-fill: linear-gradient(135deg, #4e2a25, #151111 54%, #6a4639); }
+.swatch-101-small-red { --swatch: linear-gradient(135deg, #b53d2d, #6f1510 50%, #c6523d); }
+.swatch-101-middle-red { --swatch: linear-gradient(135deg, #a92e20, #7a160f 36%, #bd4934 67%, #7e1d12); }
+.swatch-101-large-brown { --swatch: linear-gradient(135deg, #4e2a25, #151111 54%, #6a4639); }
