@@ -219,3 +219,13 @@ h2 { font-size: clamp(30px, 3.25vw, 47px); line-height: 1.45; }
 .line-float b { padding-left: 0; border-left: 0; font: 600 14px var(--serif); letter-spacing: .05em; }
 .line-float span::after { content: "點擊立即加入"; color: #06a947; font-size: 10px; white-space: nowrap; }
 @media (max-width: 500px) { .line-float { right: 12px; bottom: 14px; grid-template-columns: 62px; min-width: 0; padding: 5px; border-radius: 12px; }.line-float::before { width: 62px; height: 62px; }.line-float span { display: none; } }
+
+
+/* QR Code 卡片文字維持兩行，避免高度過高。 */
+.line-float { grid-template-columns: 68px minmax(68px, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.line-float::before { grid-column: 1; grid-row: 1 / span 2; }
+.line-float span { grid-column: 2; grid-row: 1; display: block; align-self: end; font: 600 14px var(--serif); letter-spacing: .05em; }
+.line-float span::after { content: none; }
+.line-float b { grid-column: 2; grid-row: 2; align-self: start; color: #5c846b; font: 500 10px var(--sans); letter-spacing: 0; }
+.line-float b::after { content: "　·　點擊立即加入"; color: #06a947; font-size: 10px; font-weight: 400; white-space: nowrap; }
+@media (max-width: 500px) { .line-float { grid-template-columns: 62px; grid-template-rows: 62px; }.line-float::before { grid-column: 1; grid-row: 1; }.line-float b { display: none; } }
